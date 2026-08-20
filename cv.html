@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin López - Hoja de Vida</title>
+    <!-- Fuente elegante de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET Y BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* --- TAMAÑO CARTA (A4) --- */
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            display: grid;
+            grid-template-columns: 34% 66%;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* --- COLUMNA IZQUIERDA (Sidebar) --- */
+        .sidebar {
+            background-color: #1a2b3c;
+            color: #e6edf5;
+            padding: 40px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .sidebar .name-title h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .sidebar .name-title h2 {
+            font-size: 15px;
+            font-weight: 400;
+            color: #a0c0d8;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 18px;
+        }
+
+        .sidebar-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sidebar-section h3 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #9bb7d4;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .contact-item .label {
+            font-weight: 600;
+            color: #c0d6e8;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .contact-item .value {
+            color: #eef4fa;
+            font-weight: 300;
+            word-break: break-word;
+        }
+        .contact-item .value a {
+            color: #eef4fa;
+            text-decoration: none;
+        }
+        .contact-item .value a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* Skills en sidebar (etiquetas) */
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skills-tags span {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 400;
+            color: #d6e4f0;
+            letter-spacing: 0.3px;
+        }
+        .skills-tags span strong {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            padding: 4px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.05);
+        }
+        .lang-item .name {
+            color: #e6edf5;
+        }
+        .lang-item .level {
+            color: #a0c0d8;
+            font-weight: 300;
+            font-size: 13px;
+        }
+
+        /* --- COLUMNA DERECHA (Main) --- */
+        .main {
+            background-color: #ffffff;
+            padding: 40px 40px 40px 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .main-section h3 {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #1a2b3c;
+            border-bottom: 3px solid #e6edf5;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+
+        .profile-text {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: #2d3e4f;
+            font-weight: 400;
+            text-align: justify;
+        }
+
+        .job-item {
+            margin-bottom: 18px;
+        }
+        .job-item .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+        .job-item .job-header .title {
+            font-weight: 700;
+            font-size: 16px;
+            color: #0f1f2e;
+        }
+        .job-item .job-header .date {
+            font-weight: 400;
+            font-size: 13px;
+            color: #6f889c;
+            background: #f0f4f9;
+            padding: 2px 12px;
+            border-radius: 12px;
+        }
+        .job-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .job-item ul li {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #2d3e4f;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        .job-item ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #1a2b3c;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .edu-item, .cert-item {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #2d3e4f;
+            margin-bottom: 8px;
+        }
+        .edu-item strong, .cert-item strong {
+            color: #0f1f2e;
+            font-weight: 700;
+        }
+        .edu-item .institute, .cert-item .institute {
+            color: #5a7389;
+            font-weight: 400;
+            display: block;
+            font-size: 13px;
+        }
+        .cert-item {
+            border-bottom: 1px solid #f0f4f9;
+            padding-bottom: 8px;
+        }
+        .cert-item:last-child {
+            border-bottom: none;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                border-radius: 8px;
+            }
+            .sidebar {
+                padding: 30px 24px;
+            }
+            .main {
+                padding: 30px 24px;
+            }
+        }
+
+        /* --- ESTILO PARA IMPRESIÓN (PDF) --- */
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+                margin: 0;
+                display: block;
+            }
+            .container {
+                max-width: 100%;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .sidebar {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background-color: #1a2b3c !important;
+            }
+            .sidebar .name-title h1 { color: #ffffff !important; }
+            .sidebar .name-title h2 { color: #a0c0d8 !important; }
+            .sidebar-section h3 { color: #9bb7d4 !important; }
+            .skills-tags span {
+                background-color: rgba(255,255,255,0.08) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .job-item .job-header .date {
+                background: #f0f4f9 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .main-section h3 { border-bottom-color: #e6edf5 !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ================== SIDEBAR (IZQUIERDA) ================== -->
+    <aside class="sidebar">
+        <div class="name-title">
+            <h1>Kevin Alexis<br>López Campo</h1>
+            <h2>Desarrollador Web Full Stack</h2>
+        </div>
+
+        <!-- Datos Personales -->
+        <div class="sidebar-section">
+            <h3>Contacto</h3>
+            <div class="contact-item">
+                <span class="label">Ubicación</span>
+                <span class="value">Cali, Colombia</span>
+            </div>
+            <div class="contact-item">
+                <span class="label">Teléfono</span>
+                <span class="value">304 260 3066</span>
+            </div>
+            <div class="contact-item">
+                <span class="label">Email</span>
+                <span class="value"><a href="mailto:lopezkevin9813@gmail.com">lopezkevin9813@gmail.com</a></span>
+            </div>
+            <div class="contact-item">
+                <span class="label">LinkedIn</span>
+                <span class="value"><a href="https://linkedin.com/in/kevin-lopez-637337208" target="_blank">linkedin.com/in/kevin-lopez</a></span>
+            </div>
+        </div>
+
+        <!-- Habilidades Técnicas (Agrupadas) -->
+        <div class="sidebar-section">
+            <h3>Backend</h3>
+            <div class="skills-tags">
+                <span><strong>PHP</strong> / Laravel</span>
+                <span><strong>Python</strong></span>
+                <span><strong>MySQL</strong> / PostgreSQL</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>Frontend</h3>
+            <div class="skills-tags">
+                <span><strong>JavaScript</strong> / TypeScript</span>
+                <span><strong>React.js</strong> / Vue.js</span>
+                <span>TailwindCSS / Vite</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>DevOps & Herramientas</h3>
+            <div class="skills-tags">
+                <span>Git / GitHub</span>
+                <span><strong>Docker</strong> / Podman</span>
+                <span>Web Services / REST</span>
+            </div>
+        </div>
+
+        <!-- Idiomas -->
+        <div class="sidebar-section">
+            <h3>Idiomas</h3>
+            <div class="lang-item">
+                <span class="name">Español</span>
+                <span class="level">Nativo</span>
+            </div>
+            <div class="lang-item">
+                <span class="name">Inglés</span>
+                <span class="level">Básico (A2) · Autodidacta</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================== MAIN (DERECHA) ================== -->
+    <main class="main">
+
+        <!-- Perfil -->
+        <section class="main-section">
+            <h3>Perfil Profesional</h3>
+            <p class="profile-text">
+                Desarrollador Full Stack con más de 5 años de experiencia en el diseño, construcción y mantenimiento de aplicaciones web empresariales. Especializado en el ecosistema <strong>PHP/Laravel</strong> y <strong>Python</strong>, con sólidos conocimientos en frontend moderno (<strong>React.js / Vue.js</strong>) y bases de datos relacionales (<strong>MySQL / PostgreSQL</strong>). He participado en el desarrollo de sistemas internos de alta complejidad, plataformas transaccionales y paneles administrativos, aplicando buenas prácticas de arquitectura <strong>SaaS</strong>, optimización de consultas y automatización de despliegues con <strong>Docker y Podman</strong>. Mi enfoque está en entregar código limpio, escalable y orientado a resultados, manteniendo siempre la confidencialidad y la calidad en entornos productivos.
+            </p>
+        </section>
+
+        <!-- Experiencia -->
+        <section class="main-section">
+            <h3>Experiencia Laboral</h3>
+            <div class="job-item">
+                <div class="job-header">
+                    <span class="title">Desarrollador Web Full Stack</span>
+                    <span class="date">2020 — Presente</span>
+                </div>
+                <ul>
+                    <li>Diseñé e implementé arquitecturas modulares bajo <strong>Laravel</strong>, asegurando la escalabilidad y mantenibilidad del código en proyectos de misión crítica para la operación de la empresa.</li>
+                    <li>Construí y consumí <strong>Web Services RESTful</strong>, integrando sistemas internos y externos, optimizando la comunicación entre capas y reduciendo la latencia en los intercambios de datos.</li>
+                    <li>Gestioné bases de datos relacionales (<strong>MySQL y PostgreSQL</strong>), diseñando modelos eficientes, optimizando consultas SQL y aplicando estrategias de indexación para mejorar el rendimiento general de las aplicaciones.</li>
+                    <li>Automaticé por completo los entornos de desarrollo, pruebas y producción mediante <strong>Docker y Podman</strong>, garantizando la reproducibilidad de los despliegues y minimizando errores en los pases a producción.</li>
+                    <li>Desarrollé interfaces administrativas dinámicas y responsivas con <strong>TailwindCSS y Vite</strong>, mejorando la usabilidad y la experiencia de los usuarios internos, facilitando la gestión diaria de los procesos del negocio.</li>
+                    <li>Colaboré en la definición de flujos de trabajo y buenas prácticas de <strong>control de versiones con Git/GitHub</strong>, promoviendo un desarrollo colaborativo y ordenado dentro del equipo.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Formación -->
+        <section class="main-section">
+            <h3>Formación Académica</h3>
+            <div class="edu-item">
+                <strong>Tecnólogo en Análisis y Desarrollo de Sistemas de Información (ADSI)</strong>
+                <span class="institute">SENA (Servicio Nacional de Aprendizaje) — Graduado</span>
+            </div>
+        </section>
+
+        <!-- Certificaciones -->
+        <section class="main-section">
+            <h3>Certificaciones y Cursos</h3>
+            <div class="cert-item">
+                <strong>Título Tecnólogo ADSI</strong> – SENA<br>
+                <span class="institute">Formación integral en ingeniería de software, bases de datos y desarrollo de sistemas de información.</span>
+            </div>
+            <div class="cert-item">
+                <strong>Curso Profesional de Python</strong> – Platzi<br>
+                <span class="institute">Fundamentos en lógica de programación, estructuras de datos y desarrollo backend.</span>
+            </div>
+            <div class="cert-item">
+                <strong>Curso Profesional de Git y GitHub</strong> – Platzi<br>
+                <span class="institute">Control de versiones avanzado, flujos colaborativos y buenas prácticas.</span>
+            </div>
+            <div class="cert-item">
+                <strong>Desarrollo de APIs &amp; Web Services</strong> – Platzi<br>
+                <span class="institute">Diseño, validación, consumo e integración de servicios RESTful.</span>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>
